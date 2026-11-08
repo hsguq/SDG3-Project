@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الصحة الجيدة والرفاه | الهدف الثالث</title>
+  <meta name="description" content="موقع تعريفي بالهدف الثالث من أهداف التنمية المستدامة: الصحة الجيدة والرفاه.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+/* ===== Monochrome design tokens ===== */
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f4f4f4;
+  --fg: #0a0a0a;
+  --muted: #5c5c5c;
+  --line: #d9d9d9;
+  --inv-bg: #0a0a0a;
+  --inv-fg: #ffffff;
+  --radius: 4px;
+  --max: 1080px;
+}
+:root[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --bg-alt: #141414;
+  --fg: #f2f2f2;
+  --muted: #a3a3a3;
+  --line: #2c2c2c;
+  --inv-bg: #f2f2f2;
+  --inv-fg: #0a0a0a;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.8;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  transition: background .25s, color .25s;
+}
+
+a { color: inherit; }
+img, svg { max-width: 100%; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, p { margin: 0; }
+
+.wrap { width: min(var(--max), 100% - 40px); margin-inline: auto; }
+
+.skip {
+  position: absolute; top: -60px; inset-inline-start: 12px;
+  background: var(--inv-bg); color: var(--inv-fg);
+  padding: 8px 14px; z-index: 100;
+}
+.skip:focus { top: 8px; }
+
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+/* ===== Nav ===== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; }
+.brand-num {
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  background: var(--inv-bg); color: var(--inv-fg);
+  font-size: 18px; border-radius: var(--radius);
+}
+.nav nav { margin-inline-start: auto; }
+.nav-links { display: flex; gap: 22px; }
+.nav-links a {
+  text-decoration: none; font-size: 15px; color: var(--muted);
+  padding: 4px 0; border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav-links a:hover { color: var(--fg); border-color: var(--fg); }
+
+.theme-btn {
+  width: 40px; height: 22px; border-radius: 999px;
+  border: 1px solid var(--fg); background: transparent;
+  position: relative; cursor: pointer; padding: 0;
+}
+.theme-dot {
+  position: absolute; top: 2px; inset-inline-start: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--fg); transition: inset-inline-start .25s;
+}
+:root[data-theme="dark"] .theme-dot { inset-inline-start: 20px; }
+
+/* ===== Hero ===== */
+.hero { padding: 96px 0 88px; border-bottom: 1px solid var(--line); }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.eyebrow {
+  font-size: 14px; letter-spacing: .02em; color: var(--muted);
+  margin-bottom: 14px; font-weight: 500;
+}
+.hero h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.15; font-weight: 700; margin-bottom: 24px; }
+.lead { font-size: 19px; color: var(--muted); max-width: 52ch; margin-bottom: 32px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.hero-art {
+  position: relative; aspect-ratio: 1; max-width: 380px; width: 100%;
+  margin-inline: auto;
+  border: 1px solid var(--fg);
+  display: grid; place-items: center; overflow: hidden;
+}
+.big-three { font-size: clamp(160px, 26vw, 280px); font-weight: 700; line-height: 1; letter-spacing: -.04em; }
+.pulse { position: absolute; inset-inline: 0; bottom: 18%; height: 80px; width: 100%; }
+.pulse polyline {
+  fill: none; stroke: var(--fg); stroke-width: 2.5;
+  stroke-linejoin: round; stroke-linecap: round;
+  stroke-dasharray: 700; stroke-dashoffset: 700;
+  animation: draw 3.2s ease-in-out infinite;
+  vector-effect: non-scaling-stroke;
+}
+@keyframes draw {
+  0% { stroke-dashoffset: 700; }
+  60%, 100% { stroke-dashoffset: 0; }
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block; font: inherit; font-weight: 500; font-size: 16px;
+  padding: 12px 26px; border-radius: var(--radius);
+  border: 1px solid var(--fg); cursor: pointer; text-decoration: none;
+  transition: transform .15s, background .2s, color .2s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-solid { background: var(--inv-bg); color: var(--inv-fg); }
+.btn-solid:hover { background: transparent; color: var(--fg); }
+.btn-line { background: transparent; color: var(--fg); }
+.btn-line:hover { background: var(--inv-bg); color: var(--inv-fg); }
+.btn.small { padding: 8px 18px; font-size: 15px; }
+
+/* ===== Sections ===== */
+.section { padding: 88px 0; }
+.section.alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
+h2 { font-size: clamp(28px, 4vw, 42px); line-height: 1.3; font-weight: 700; margin-bottom: 40px; }
+h3 { font-size: 20px; font-weight: 700; }
+
+.two-col { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; }
+.two-col h2 { margin-bottom: 0; }
+.prose p + p { margin-top: 18px; }
+.prose p { color: var(--muted); }
+.prose strong { color: var(--fg); }
+
+/* ===== Stats ===== */
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--fg);
+}
+.stat { padding: 28px 24px; border-inline-start: 1px solid var(--line); background: var(--bg); }
+.stat:first-child { border-inline-start: 0; }
+.stat-n { font-size: 52px; font-weight: 700; line-height: 1.1; margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; direction: ltr; justify-content: flex-end; }
+.stat-n small { font-size: 18px; font-weight: 500; color: var(--muted); }
+.stat p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+.note { margin-top: 24px; font-size: 14px; color: var(--muted); max-width: 80ch; }
+
+/* ===== Filters & accordion ===== */
+.filters { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+.chip {
+  font: inherit; font-size: 15px; cursor: pointer;
+  padding: 6px 18px; border-radius: 999px;
+  border: 1px solid var(--line); background: transparent; color: var(--fg);
+  transition: all .2s;
+}
+.chip:hover { border-color: var(--fg); }
+.chip.active { background: var(--inv-bg); color: var(--inv-fg); border-color: var(--inv-bg); }
+
+.acc { border-top: 1px solid var(--fg); }
+.acc-item { border-bottom: 1px solid var(--line); }
+.acc-item[hidden] { display: none; }
+.acc-btn {
+  width: 100%; display: flex; align-items: center; gap: 20px;
+  background: none; border: 0; font: inherit; color: inherit; cursor: pointer;
+  padding: 22px 4px; text-align: start;
+}
+.acc-code { font-weight: 700; min-width: 44px; font-size: 18px; direction: ltr; text-align: start; }
+.acc-title { flex: 1; font-size: 18px; font-weight: 500; }
+.acc-icon { position: relative; width: 16px; height: 16px; flex: none; }
+.acc-icon::before, .acc-icon::after {
+  content: ""; position: absolute; background: var(--fg);
+  top: 50%; left: 0; width: 100%; height: 2px; margin-top: -1px;
+  transition: transform .25s;
+}
+.acc-icon::after { transform: rotate(90deg); }
+.acc-btn[aria-expanded="true"] .acc-icon::after { transform: rotate(0); }
+.acc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+.acc-panel > div { overflow: hidden; }
+.acc-btn[aria-expanded="true"] + .acc-panel { grid-template-rows: 1fr; }
+.acc-panel p { padding: 0 64px 24px 4px; color: var(--muted); max-width: 70ch; }
+.tag {
+  display: inline-block; font-size: 12px; border: 1px solid var(--line);
+  padding: 0 8px; border-radius: 999px; color: var(--muted); margin-inline-start: 10px;
+}
+
+/* ===== Tools ===== */
+.tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card {
+  background: var(--bg); border: 1px solid var(--fg);
+  padding: 28px; display: flex; flex-direction: column; gap: 16px;
+}
+.card-sub { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+.habits { display: grid; gap: 4px; }
+.habits label {
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+  padding: 8px 4px; border-bottom: 1px solid var(--line); font-size: 16px;
+}
+.habits input { position: absolute; opacity: 0; pointer-events: none; }
+.box {
+  width: 20px; height: 20px; border: 1.5px solid var(--fg); border-radius: 3px;
+  display: grid; place-items: center; flex: none; transition: background .15s;
+}
+.box::after {
+  content: ""; width: 10px; height: 5px;
+  border-inline-start: 2px solid var(--inv-fg); border-bottom: 2px solid var(--inv-fg);
+  transform: rotate(-45deg) scale(0); margin-top: -2px; transition: transform .15s;
+}
+.habits input:checked + .box { background: var(--inv-bg); }
+.habits input:checked + .box::after { transform: rotate(-45deg) scale(1); }
+.habits input:checked ~ span.txt { text-decoration: line-through; color: var(--muted); }
+.habits input:focus-visible + .box { outline: 2px solid var(--fg); outline-offset: 2px; }
+
+.progress { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.progress i { display: block; height: 100%; width: 0; background: var(--fg); transition: width .4s; }
+.progress-text { font-size: 14px; color: var(--muted); }
+
+form { display: grid; gap: 14px; }
+label { display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+input[type="number"] {
+  font: inherit; font-size: 17px; color: var(--fg); background: transparent;
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; width: 100%;
+}
+input[type="number"]:focus { border-color: var(--fg); outline: none; }
+.result { min-height: 64px; font-size: 15px; color: var(--muted); }
+.result strong { display: block; font-size: 34px; color: var(--fg); line-height: 1.2; }
+.scale { display: flex; height: 6px; margin-top: 10px; gap: 2px; direction: ltr; }
+.scale i { flex: 1; background: var(--line); }
+.scale i.on { background: var(--fg); }
+
+.breath-wrap { display: grid; place-items: center; height: 180px; }
+.breath {
+  width: 90px; height: 90px; border-radius: 50%;
+  border: 2px solid var(--fg); display: grid; place-items: center;
+  font-size: 14px; transition: transform 4s ease-in-out, background .4s, color .4s;
+}
+.breath.in { transform: scale(1.7); background: var(--inv-bg); color: var(--inv-fg); }
+.breath.hold { transform: scale(1.7); background: var(--inv-bg); color: var(--inv-fg); }
+.breath.out { transform: scale(1); transition-duration: 6s; }
+
+/* ===== Steps ===== */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); counter-reset: s; border-top: 1px solid var(--fg); border-inline-start: 1px solid var(--line); }
+.steps li {
+  counter-increment: s; padding: 28px 24px;
+  border-bottom: 1px solid var(--line); border-inline-end: 1px solid var(--line);
+  display: grid; gap: 8px; align-content: start;
+}
+.steps li::before { content: "0" counter(s); font-size: 14px; color: var(--muted); direction: ltr; text-align: start; }
+.steps b { font-size: 19px; }
+.steps span { color: var(--muted); font-size: 15px; }
+
+.alert { margin-top: 40px; border: 1px solid var(--fg); padding: 20px 24px; display: grid; gap: 4px; }
+.alert p { color: var(--muted); font-size: 15px; }
+
+/* ===== Footer ===== */
+.footer { background: var(--inv-bg); color: var(--inv-fg); padding: 40px 0; }
+.foot-inner { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; }
+.src { font-size: 14px; opacity: .75; }
+.src a { text-underline-offset: 3px; }
+.to-top {
+  width: 40px; height: 40px; border: 1px solid var(--inv-fg); background: transparent;
+  color: var(--inv-fg); font-size: 18px; cursor: pointer; border-radius: var(--radius);
+}
+.to-top:hover { background: var(--inv-fg); color: var(--inv-bg); }
+
+/* ===== Reveal on scroll ===== */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ===== Responsive ===== */
+@media (max-width: 920px) {
+  .hero-grid, .two-col { grid-template-columns: 1fr; gap: 36px; }
+  .hero-art { max-width: 260px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(3) { border-inline-start: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .tools { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .nav-links { display: none; }
+  .nav nav { display: none; }
+  .theme-btn { margin-inline-start: auto; }
+  .hero { padding: 56px 0; }
+  .section { padding: 60px 0; }
+  .stats { grid-template-columns: 1fr; }
+  .stat { border-inline-start: 0; border-top: 1px solid var(--line); }
+  .stat:first-child { border-top: 0; }
+  .steps { grid-template-columns: 1fr; }
+  .acc-panel p { padding-inline-end: 4px; }
+  .acc-btn { gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+  .pulse polyline { stroke-dashoffset: 0; }
+}
+</style>
+</head>
+<body>
+
+  <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand" aria-label="الصفحة الرئيسية">
+        <span class="brand-num">3</span>
+        <span class="brand-text">الصحة والرفاه</span>
+      </a>
+      <nav aria-label="التنقل الرئيسي">
+        <ul class="nav-links">
+          <li><a href="#about">عن الهدف</a></li>
+          <li><a href="#numbers">أرقام</a></li>
+          <li><a href="#targets">الغايات</a></li>
+          <li><a href="#tools">أدوات</a></li>
+          <li><a href="#act">شارك</a></li>
+        </ul>
+      </nav>
+      <button class="theme-btn" id="themeBtn" aria-label="تبديل الوضع الليلي" title="تبديل الوضع">
+        <span class="theme-dot"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">أهداف التنمية المستدامة / الهدف 3</p>
+          <h1>صحة جيدة<br>ورفاه للجميع</h1>
+          <p class="lead">ضمان تمتّع الجميع بأنماط عيش صحية وبالرفاهية في جميع الأعمار. هدف بسيط في صياغته، وكبير في أثره على كل جانب من حياتنا.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#targets">استكشف الغايات</a>
+            <a class="btn btn-line" href="#tools">جرّب الأدوات</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="big-three">3</div>
+          <svg class="pulse" viewBox="0 0 400 80" preserveAspectRatio="none">
+            <polyline points="0,40 90,40 115,40 135,8 160,72 185,24 205,40 400,40"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap two-col">
+        <div>
+          <p class="eyebrow">لماذا هذا الهدف؟</p>
+          <h2>الصحة أساس كل شيء</h2>
+        </div>
+        <div class="prose">
+          <p>تعرّف منظمة الصحة العالمية الصحة بأنها حالة من اكتمال السلامة بدنياً وعقلياً واجتماعياً، وليست مجرد غياب المرض أو العجز.</p>
+          <p>الإنسان السليم يتعلم أفضل، ويعمل بإنتاجية أعلى، ويشارك في مجتمعه بفاعلية. ولذلك ترتبط الصحة ارتباطاً مباشراً بأهداف أخرى مثل القضاء على الفقر والجوع وتوفير المياه النظيفة والصرف الصحي.</p>
+          <p>يتضمن الهدف الثالث <strong>13 غاية</strong>: تسع غايات أساسية وأربع وسائل للتنفيذ، تغطي صحة الأم والطفل والأمراض المعدية وغير المعدية والصحة النفسية والتغطية الصحية الشاملة.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUMBERS -->
+    <section class="section alt" id="numbers">
+      <div class="wrap">
+        <p class="eyebrow">أين نقف اليوم؟</p>
+        <h2>أرقام من تقارير منظمة الصحة العالمية</h2>
+        <div class="stats">
+          <article class="stat">
+            <div class="stat-n"><span data-count="40" data-prefix="+">0</span><small>%</small></div>
+            <p>انخفاض في وفيات الأمهات عالمياً بين عامي 2000 و2023.</p>
+          </article>
+          <article class="stat">
+            <div class="stat-n"><span data-count="50" data-prefix="+">0</span><small>%</small></div>
+            <p>انخفاض في وفيات الأطفال دون الخامسة خلال الفترة نفسها، أي أكثر من النصف.</p>
+          </article>
+          <article class="stat">
+            <div class="stat-n"><span data-count="1.8" data-decimals="1">0</span><small>سنة</small></div>
+            <p>تراجع في متوسط العمر المتوقع عالمياً بين 2019 و2021، وهو أكبر انخفاض في العقود الأخيرة.</p>
+          </article>
+          <article class="stat">
+            <div class="stat-n"><span data-count="8" data-suffix="">0</span><small>ملايين</small></div>
+            <p>وفاة أطفال يمكن تفاديها بحلول 2030 إذا تسارعت الجهود، إضافة إلى نحو 700 ألف وفاة أمهات.</p>
+          </article>
+        </div>
+        <p class="note">يحذّر تقرير الإحصاءات الصحية العالمية 2026 من أن العالم لا يزال بعيداً عن المسار الصحيح لتحقيق أهداف الصحة المرتبطة بالتنمية المستدامة بحلول 2030، وأن جائحة كوفيد-19 محت ما يقارب عقداً من المكاسب في العمر المتوقع. الأرقام أعلاه من تقريري 2025 و2026 لم��ظمة الصحة العالمية.</p>
+      </div>
+    </section>
+
+    <!-- TARGETS -->
+    <section class="section" id="targets">
+      <div class="wrap">
+        <p class="eyebrow">الغايات</p>
+        <h2>13 غاية لحياة أصح</h2>
+
+        <div class="filters" role="tablist" aria-label="تصفية الغايات">
+          <button class="chip active" data-filter="all" role="tab" aria-selected="true">الكل</button>
+          <button class="chip" data-filter="core" role="tab" aria-selected="false">الغايات الأساسية</button>
+          <button class="chip" data-filter="means" role="tab" aria-selected="false">وسائل التنفيذ</button>
+        </div>
+
+        <div class="acc" id="acc"></div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="section alt" id="tools">
+      <div class="wrap">
+        <p class="eyebrow">أدوات تفاعلية</p>
+        <h2>ابدأ بنفسك</h2>
+        <div class="tools">
+
+          <!-- Habits -->
+          <article class="card">
+            <h3>عادات اليوم</h3>
+            <p class="card-sub">علّم ما أنجزته اليوم. يُحفظ تقدمك على جهازك فقط.</p>
+            <ul class="habits" id="habits"></ul>
+            <div class="progress" aria-hidden="true"><i id="habitBar"></i></div>
+            <p class="progress-text" id="habitText" aria-live="polite"></p>
+            <button class="btn btn-line small" id="habitReset">إعادة الضبط</button>
+          </article>
+
+          <!-- BMI -->
+          <article class="card">
+            <h3>حاسبة مؤشر كتلة الجسم</h3>
+            <p class="card-sub">للبالغين فقط. هذا مؤشر عام وليس تشخيصاً.</p>
+            <form id="bmiForm" novalidate>
+              <label>الوزن (كجم)
+                <input type="number" id="w" min="20" max="400" step="0.1" inputmode="decimal" placeholder="70" required>
+              </label>
+              <label>الطول (سم)
+                <input type="number" id="h" min="100" max="250" step="0.1" inputmode="decimal" placeholder="170" required>
+              </label>
+              <button class="btn btn-solid small" type="submit">احسب</button>
+            </form>
+            <div class="result" id="bmiResult" aria-live="polite"></div>
+          </article>
+
+          <!-- Breathing -->
+          <article class="card">
+            <h3>دقيقة تنفس</h3>
+            <p class="card-sub">تمرين بسيط لتهدئة التوتر: شهيق، حبس، زفير.</p>
+            <div class="breath-wrap">
+              <div class="breath" id="breath"><span id="breathLabel">جاهز</span></div>
+            </div>
+            <button class="btn btn-solid small" id="breathBtn">ابدأ</button>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT -->
+    <section class="section" id="act">
+      <div class="wrap">
+        <p class="eyebrow">ماذا يمكنني أن أفعل؟</p>
+        <h2>خطوات صغيرة، أثر كبير</h2>
+        <ol class="steps">
+          <li><b>تحرّك يومياً</b><span>نصف ساعة من المشي السريع تُحدث فرقاً حقيقياً في صحة القلب والمزاج.</span></li>
+          <li><b>تغذَّ جيداً</b><span>خضروات وفاكهة وماء، وقلّل السكر والملح والأطعمة المصنّعة.</span></li>
+          <li><b>اهتم بنومك</b><span>سبع إلى تسع ساعات للبالغين، في مواعيد منتظمة قدر الإمكان.</span></li>
+          <li><b>لا تهمل صحتك النفسية</b><span>تحدّث مع من تثق به، واطلب مساعدة مختص عندما تحتاج.</span></li>
+          <li><b>تطعَّم وافحص</b><span>التزم بالتطعيمات وبالفحوص الدورية، فالوقاية أرخص وأسهل من العلاج.</span></li>
+          <li><b>انشر الوعي</b><span>شارك معلومة صحية موثوقة مع أسرتك وأصدقائك، وتجنّب الشائعات.</span></li>
+        </ol>
+
+        <aside class="alert">
+          <b>في الحالات الطارئة</b>
+          <p>إذا كنت أنت أو شخص قريب منك في خطر مباشر، فاتصل بالإسعاف فوراً (في مصر: 123). هذا الموقع للتوعية فقط ولا يغني عن استشارة الطبيب.</p>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot-inner">
+      <p><b>الهدف 3</b> · الصحة الجيدة والرفاه</p>
+      <p class="src">المصادر: <a href="https://www.who.int/publications/i/item/9789240122482" target="_blank" rel="noopener">منظمة الصحة العالمية، الإحصاءات الصحية العالمية 2026</a> · <a href="https://sdgs.un.org/goals/goal3" target="_blank" rel="noopener">الأمم المتحدة، الهدف 3</a></p>
+      <button class="to-top" id="toTop" aria-label="العودة للأعلى">↑</button>
+    </div>
+  </footer>
+
+  <script>
+(function () {
+  "use strict";
+
+  /* ---------- helpers ---------- */
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* ignore */ } }
+  };
+
+  /* ---------- theme ---------- */
+  const root = document.documentElement;
+  const savedTheme = store.get("sdg3-theme", null);
+  const prefersDark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+  root.setAttribute("data-theme", savedTheme || (prefersDark ? "dark" : "light"));
+  $("#themeBtn").addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    store.set("sdg3-theme", next);
+  });
+
+  /* ---------- targets data ---------- */
+  const targets = [
+    { code: "3.1", type: "core", title: "خفض وفيات الأمهات", text: "خفض النسبة العالمية لوفيات الأمهات إلى أقل من 70 وفاة لكل 100 ألف مولود حي بحلول 2030." },
+    { code: "3.2", type: "core", title: "إنهاء وفيات الرضع والأطفال التي يمكن تفاديها", text: "إنهاء وفيات المواليد والأطفال دون الخامسة التي يمكن تفاديها، بحيث لا تتجاوز وفيات حديثي الولادة 12 لكل ألف مولود حي، ووفيات الأطفال دون الخامسة 25 لكل ألف." },
+    { code: "3.3", type: "core", title: "القضاء على الأوبئة", text: "إنهاء أوبئة الإيدز والسل والملاريا والأمراض المدارية المهملة، ومكافحة التهاب الكبد والأمراض المنقولة بالمياه وغيرها من الأمراض المعدية." },
+    { code: "3.4", type: "core", title: "الأمراض غير المعدية والصحة النفسية", text: "خفض الوفيات المبكرة الناجمة عن الأمراض غير المعدية بمقدار الثلث عن طريق الوقاية والعلاج، وتعزيز الصحة النفسية والرفاه." },
+    { code: "3.5", type: "core", title: "المواد المخدرة والكحول", text: "تعزيز الوقاية من تعاطي المواد المخدرة وعلاجه، بما في ذلك الاستعمال الضار للكحول." },
+    { code: "3.6", type: "core", title: "حوادث الطرق", text: "خفض عدد الوفيات والإصابات الناجمة عن حوادث الطرق في العالم إلى النصف." },
+    { code: "3.7", type: "core", title: "الصحة الجنسية والإنجابية", text: "ضمان حصول الجميع على خدمات رعاية الصحة الجنسية والإنجابية، بما فيها تنظيم الأسرة والمعلومات والتثقيف، وإدماجها في الاستراتيجيات الوطنية." },
+    { code: "3.8", type: "core", title: "التغطية الصحية الشاملة", text: "تحقيق التغطية الصحية الشاملة، بما فيها الحماية من المخاطر المالية، والحصول على خدمات رعاية صحية جيدة وعلى الأدوية واللقاحات الأساسية بأسعار معقولة." },
+    { code: "3.9", type: "core", title: "التلوث والمواد الكيميائية", text: "خفض عدد الوفيات والأمراض الناجمة عن المواد الكيميائية الخطرة وتلوث الهواء والماء والتربة بدرجة كبيرة." },
+    { code: "3.a", type: "means", title: "مكافحة التبغ", text: "تعزيز تنفيذ اتفاقية منظمة الصحة العالمية الإطارية بشأن مكافحة التبغ في جميع البلدان." },
+    { code: "3.b", type: "means", title: "البحث والتطوير واللقاحات", text: "دعم البحث والتطوير في اللقاحات والأدوية للأمراض التي تصيب البلدان النامية في المقام الأول، وإتاحة الأدوية واللقاحات الأساسية بأسعار معقولة." },
+    { code: "3.c", type: "means", title: "تمويل الصحة والعاملون الصحيون", text: "زيادة كبيرة في تمويل الصحة وفي توظيف القوى العاملة الصحية وتدريبها واستبقائها، خاصة في أقل البلدان نمواً والدول الجزرية الصغيرة." },
+    { code: "3.d", type: "means", title: "الإنذار المبكر وإدارة المخاطر", text: "تعزيز قدرات جميع البلدان على الإنذار المبكر وإدارة المخاطر الصحية الوطنية والعالمية والحد منها." }
+  ];
+
+  const acc = $("#acc");
+  acc.innerHTML = targets.map((t, i) => `
+    <div class="acc-item" data-type="${t.type}">
+      <button class="acc-btn" aria-expanded="false" aria-controls="p${i}" id="b${i}">
+        <span class="acc-code">${t.code}</span>
+        <span class="acc-title">${t.title}<span class="tag">${t.type === "core" ? "أساسية" : "وسيلة تنفيذ"}</span></span>
+        <span class="acc-icon" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel" id="p${i}" role="region" aria-labelledby="b${i}">
+        <div><p>${t.text}</p></div>
+      </div>
+    </div>`).join("");
+
+  acc.addEventListener("click", (e) => {
+    const btn = e.target.closest(".acc-btn");
+    if (!btn) return;
+    const open = btn.getAttribute("aria-expanded") === "true";
+    $$(".acc-btn", acc).forEach((b) => b.setAttribute("aria-expanded", "false"));
+    btn.setAttribute("aria-expanded", String(!open));
+  });
+
+  $$(".chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const f = chip.dataset.filter;
+      $$(".chip").forEach((c) => {
+        const on = c === chip;
+        c.classList.toggle("active", on);
+        c.setAttribute("aria-selected", String(on));
+      });
+      $$(".acc-item", acc).forEach((it) => { it.hidden = f !== "all" && it.dataset.type !== f; });
+    });
+  });
+
+  /* ---------- animated counters ---------- */
+  function animateCount(el) {
+    const end = parseFloat(el.dataset.count);
+    const dec = parseInt(el.dataset.decimals || "0", 10);
+    const prefix = el.dataset.prefix || "";
+    const dur = 1400;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { el.textContent = prefix + end.toFixed(dec); return; }
+    const t0 = performance.now();
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + (end * eased).toFixed(dec);
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  const io = "IntersectionObserver" in window
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          en.target.classList.add("in");
+          $$("[data-count]", en.target).forEach(animateCount);
+          io.unobserve(en.target);
+        });
+      }, { threshold: 0.2 })
+    : null;
+
+  $$(".stats, .section .wrap > h2, .steps li, .card, .alert").forEach((el) => {
+    el.classList.add("reveal");
+    if (io) io.observe(el); else { el.classList.add("in"); $$("[data-count]", el).forEach(animateCount); }
+  });
+
+  /* ---------- habits ---------- */
+  const habitList = [
+    "شرب 8 أكواب ماء",
+    "مشي أو رياضة 30 دقيقة",
+    "نوم 7 ساعات أو أكثر",
+    "وجبة تحتوي على خضروات",
+    "10 دقائق هدوء أو تأمل",
+    "تواصل مع شخص عزيز"
+  ];
+  const todayKey = "sdg3-habits-" + new Date().toISOString().slice(0, 10);
+  let done = store.get(todayKey, []);
+  const hEl = $("#habits");
+  hEl.innerHTML = habitList.map((h, i) => `
+    <li><label>
+      <input type="checkbox" data-i="${i}" ${done.includes(i) ? "checked" : ""}>
+      <span class="box"></span><span class="txt">${h}</span>
+    </label></li>`).join("");
+
+  function renderHabits() {
+    const n = done.length, total = habitList.length;
+    $("#habitBar").style.width = (n / total * 100) + "%";
+    $("#habitText").textContent = n === total
+      ? "أحسنت، أنجزت كل عادات اليوم."
+      : `أنجزت ${n} من ${total}`;
+  }
+  hEl.addEventListener("change", (e) => {
+    const i = Number(e.target.dataset.i);
+    done = e.target.checked ? [...new Set([...done, i])] : done.filter((x) => x !== i);
+    store.set(todayKey, done);
+    renderHabits();
+  });
+  $("#habitReset").addEventListener("click", () => {
+    done = [];
+    store.set(todayKey, done);
+    $$("input", hEl).forEach((c) => (c.checked = false));
+    renderHabits();
+  });
+  renderHabits();
+
+  /* ---------- BMI ---------- */
+  const cats = [
+    { max: 18.5, label: "أقل من الوزن الطبيعي" },
+    { max: 25, label: "وزن طبيعي" },
+    { max: 30, label: "وزن زائد" },
+    { max: Infinity, label: "سمنة" }
+  ];
+  $("#bmiForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const w = parseFloat($("#w").value);
+    const h = parseFloat($("#h").value) / 100;
+    const out = $("#bmiResult");
+    if (!(w > 0) || !(h > 0)) {
+      out.textContent = "من فضلك أدخل الوزن والطول بشكل صحيح.";
+      return;
+    }
+    const bmi = w / (h * h);
+    const idx = cats.findIndex((c) => bmi < c.max);
+    out.innerHTML = `<strong>${bmi.toFixed(1)}</strong>${cats[idx].label}
+      <div class="scale" aria-hidden="true">${cats.map((_, i) => `<i class="${i <= idx ? "on" : ""}"></i>`).join("")}</div>
+      <small>المؤشر تقدير عام ولا يعكس نسبة الدهون أو الكتلة العضلية. استشر طبيبك للتقييم الدقيق.</small>`;
+  });
+
+  /* ---------- breathing ---------- */
+  const breath = $("#breath"), label = $("#breathLabel"), bBtn = $("#breathBtn");
+  let timers = [], running = false, cycles = 0;
+  const MAX_CYCLES = 6; // about one minute
+
+  function stopBreath() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    running = false;
+    cycles = 0;
+    breath.className = "breath";
+    label.textContent = "جاهز";
+    bBtn.textContent = "ابدأ";
+  }
+  function cycle() {
+    if (cycles >= MAX_CYCLES) { stopBreath(); label.textContent = "انتهى"; return; }
+    cycles++;
+    breath.className = "breath in"; label.textContent = "شهيق";
+    timers.push(setTimeout(() => { breath.className = "breath hold"; label.textContent = "احبس"; }, 4000));
+    timers.push(setTimeout(() => { breath.className = "breath out"; label.textContent = "زفير"; }, 6000));
+    timers.push(setTimeout(cycle, 10000));
+  }
+  bBtn.addEventListener("click", () => {
+    if (running) { stopBreath(); return; }
+    running = true;
+    bBtn.textContent = "إيقاف";
+    cycle();
+  });
+
+  /* ---------- back to top ---------- */
+  $("#toTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+})();
+</script>
+</body>
+</html>
